@@ -1,0 +1,8 @@
+[INFO ] 2023-03-01 11:09:25.892 [main] Menu - Создан новый заказnumber: 16, name: Хурма, quality: 5.0, price: 2.0, amount: 10.0, deleted: false
+[INFO ] 2023-03-01 11:15:14.452 [main] Menu - Создан новый заказnumber: 18, name: Лук, quality: 1.0, price: 4.0, amount: 4.0, deleted: false
+[INFO ] 2023-03-02 07:02:00.282 [main] Menu - Заказ удален.
+[INFO ] 2023-03-02 07:14:00.784 [main] Menu - Создан новый заказ number: 1, name: Лук, quality: 1.0, price: 1.0, amount: 1.0, deleted: false
+[INFO ] 2023-03-02 07:14:55.816 [main] Menu - Создан новый заказ number: 2, name: сыр, quality: 2.0, price: 6.0, amount: 12.0, deleted: false
+[INFO ] 2023-03-02 07:15:24.734 [main] Menu - Создан новый заказ number: 3, name: Киви, quality: 2.0, price: 4.0, amount: 8.0, deleted: false
+[INFO ] 2023-03-02 07:22:09.306 [main] Menu - Создан новый заказ number: 4, name: Груша_Китайская, quality: 2.0, price: 3.0, amount: 6.0, deleted: false
+[ERROR] 2023-03-02 16:09:49.197 [main] Menu - Файл c именем: orders_txt не найден
