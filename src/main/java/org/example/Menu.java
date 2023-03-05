@@ -17,13 +17,7 @@ public class Menu {
             switch (menu) {
                 case 0 -> startMenu();
                 case 1 -> {
-                    System.out.println("Введите наименование товара:");
-                    String name = scanner.next();
-                    System.out.println("Ведите количество товара:");
-                    double quality = scanner.nextDouble();
-                    System.out.println("Ведите цену товара товара:");
-                    double price = scanner.nextDouble();
-                    Order order = new Order(service.getMaxNumberOfOrder() + 1, name, quality, price);
+                    Order order = service.formationOfAnOrderByTheUser();
                     service.addOrder(order);
                     logger.info("Создан новый заказ " + order);
                     startMenu();
@@ -37,7 +31,8 @@ public class Menu {
                     startMenu();
                 }
                 case 3 -> {
-                    service.deleteOrder();
+                    System.out.println("Введите номер заказа который хотите удалить:");
+                    service.deleteOrder(scanner.nextInt());
                     logger.info("Заказ удален.");
                     System.out.println(" ");
                     startMenu();

@@ -6,23 +6,41 @@ import org.apache.logging.log4j.Logger;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Service {
 
     private static final Logger logger = LogManager.getLogger(Menu.class);
 
+    public Order formationOfAnOrderByTheUser() {
+        Scanner scanner = new Scanner(System.in) ;
+        Service service = new Service();
+        System.out.println("Введите наименование товара:");
+        String name = scanner.next();
+        System.out.println("Ведите количество товара:");
+        double quality = scanner.nextDouble();
+        System.out.println("Ведите цену товара товара:");
+        double price = scanner.nextDouble();
+        Order order = new Order();
+        order.setNumber(service.getMaxNumberOfOrder() + 1);
+        order.setName(name);
+        order.setQuality(quality);
+        order.setPrice(price);
+        order.setAmount(order.getQuality() * order.getPrice());
+        return order;
+    }
+
     public void addOrder(Order order) {
-        List<Order> listOrder = new ArrayList<>();
-        listOrder.add(order);
         File file = new File("src/main/java/org/example/orders_txt");
         try (FileWriter writer = new FileWriter(file, true)) {
-            for (Order x : listOrder) {
-                String text = x.getNumber() + ";" + x.getName() + ";" + x.getQuality() + ";" + x.getAmount() + ";"
-                        + x.getPrice() + ";" + x.getDeleted();
+                String text = order.getNumber() + ";"
+                            + order.getName() + ";"
+                            + order.getQuality() + ";"
+                            + order.getAmount() + ";"
+                            + order.getPrice();
                 writer.write(text);
-                writer.append('\n');
+                writer.append("\n");
                 writer.flush();
-            }
         } catch (IOException e) {
             logger.error("Файл c именем: " + "orders_txt" + " не найден");
         }
@@ -45,7 +63,6 @@ public class Service {
                 order.setQuality(Double.parseDouble(stringsOrder[2]));
                 order.setAmount(Double.parseDouble(stringsOrder[3]));
                 order.setPrice(Double.parseDouble(stringsOrder[4]));
-                order.setDeleted(Boolean.parseBoolean(stringsOrder[5]));
                 listOrder.add(order);
                 line = reader.readLine();
             }
@@ -66,10 +83,23 @@ public class Service {
         return listOrder;
     }
 
-    public void deleteOrder() {
+    public void deleteOrder(int numberOrder) {
+        Service service = new Service();
+        List<Order> allOrders = service.getAllOrders();
         File file = new File("src/main/java/org/example/orders_txt");
         try (FileWriter writer = new FileWriter(file)) {
-            writer.write("");
+            for (Order x : allOrders) {
+                if (x.getNumber() != numberOrder) {
+                    String text = x.getNumber() + ";"
+                            + x.getName() + ";"
+                            + x.getQuality() + ";"
+                            + x.getPrice() + ";"
+                            + x.getAmount();
+                    writer.write(text);
+                    writer.append('\n');
+                    writer.flush();
+                }
+            }
         } catch (IOException e) {
             logger.error("Файл c именем: " + "orders_txt" + " не найден");
         }
