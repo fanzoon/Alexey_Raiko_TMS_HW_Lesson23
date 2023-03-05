@@ -45,7 +45,6 @@ public class Order {
                 && Double.compare(order.quality, quality) == 0
                 && Double.compare(order.price, price) == 0
                 && Double.compare(order.amount, amount) == 0
-//                && deleted == order.deleted
                 && name.equals(order.name);
     }
 
